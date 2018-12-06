@@ -30,7 +30,7 @@ This repository contains the [Responsys](https://docs.oracle.com/cloud/latest/ma
 
 ### Documentation
 
-[Responsys integration](https://docs.mparticle.com/integrations/responsys/event/)
+[Responsys integration](https://docs.mparticle.com/integrations/oracle-responsys/event/)
 
 ### License
 
