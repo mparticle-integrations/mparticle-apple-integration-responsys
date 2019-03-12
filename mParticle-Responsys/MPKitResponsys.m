@@ -142,17 +142,17 @@ NSString * const CUSTOM_FLAG_ENGAGEMENT = @"Responsys.Custom.e";
 - (MPKitExecStatus *)logEvent:(MPEvent *)mpEvent {
     NSDictionary *customFlags = mpEvent.customFlags;
     NSString *eventName = mpEvent.name;
+    NSDictionary *customParameters = mpEvent.info;
     if (nil != customFlags) {
         if(nil != customFlags[CUSTOM_FLAG_IAM]) {
-            [[self pushIOManager] trackEvent:eventName];
+            [[self pushIOManager] trackEvent:eventName properties:customParameters];
         }
         
         NSArray<NSString *> *values = customFlags[CUSTOM_FLAG_ENGAGEMENT];
-        if(nil != values && values.count) {
-            NSString *engagementType = values[0];
-            if([engagementType intValue]) {
-                [[self pushIOManager] trackEngagementMetric:[engagementType intValue]];
-            }
+        if(values.count > 0) {
+            int engagementType = [values[0] intValue];
+            [[self pushIOManager] trackEngagementMetric:engagementType withProperties:customParameters completionHandler:nil];
+            
         }
     }
     
@@ -201,17 +201,17 @@ NSString * const CUSTOM_FLAG_ENGAGEMENT = @"Responsys.Custom.e";
     NSArray *products = commerceEvent.products;
     if(nil != commerceEventAction && products.count > 0){
         for (MPProduct *product in products) {
-            NSString *pCategory = product.category;
-            NSString *pIdentifier = product.sku;
-            if (pCategory.length && pIdentifier.length) {
-                NSDictionary *productProperties = @{@"Pid": pIdentifier,@"Pc":pCategory};
-                if(nil != productProperties){
-                    [[self pushIOManager] trackEvent:commerceEventAction properties:productProperties];
-                }
+            NSMutableDictionary *productProperties = product.userDefinedAttributes;
+            if (nil != product.sku) {
+                productProperties[@"Pid"] = product.sku;
             }
+            if (nil != product.category) {
+                productProperties[@"Pc"] = product.category;
+            }
+            [[self pushIOManager] trackEvent:commerceEventAction properties:productProperties];
             
             if (commerceEvent.action == MPCommerceEventActionPurchase) {
-                [[self pushIOManager] trackEngagementMetric:PUSHIO_ENGAGEMENT_METRIC_PURCHASE];
+                [[self pushIOManager] trackEngagementMetric:PUSHIO_ENGAGEMENT_METRIC_PURCHASE withProperties:productProperties completionHandler:nil];
             }
         }
     }
