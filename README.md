@@ -13,9 +13,9 @@ This repository contains the [Responsys](https://docs.oracle.com/cloud/latest/ma
 
 > (This requires your mParticle log level to be at least Debug)
 
-4. Follow step [8.5] in [Step-by-Step guide](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCFA/ios/step-by-step/) to register the app. 
+4. Follow step [8.5] in the Oracle [step-by-step guide](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCFA/ios/step-by-step/) to register the user for push notifications. 
 
-    **NOTE**:  This step might prompt user for push notification permission if not already prompted. If you want to delay notification permission prompt than register at appropriate place.
+> **NOTE**:  This step will prompt the user for push notification permissions if they have not already granted permissions. It's up to you to determine the earliest appropriate step in the user experience to request this permission.
 
 5. Reference mParticle's integration docs below to enable the integration.
 
