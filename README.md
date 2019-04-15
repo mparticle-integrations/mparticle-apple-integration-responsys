@@ -7,25 +7,19 @@ This repository contains the [Responsys](https://docs.oracle.com/cloud/latest/ma
 
 	**NOTE**: In **step [2]**, download your app's **pushio_config.json** file, however, this does not need to be added to your app, you will need its contents to create the Responsys Connection in your mParticle workspace. 
 
-2. Add the kit dependency to your app's Podfile or Cartfile:
-
-    ```
-    pod 'mParticle-Responsys', '~> 1.2'
-    ```
-
-    OR
-
-    ```
-    github 'mparticle-integrations/mparticle-apple-integration-responsys' ~> 1.2.3
-    ```
+2. Download the [Responsys Kit files](https://github.com/mparticle-integrations/mparticle-apple-integration-responsys/tree/master/mParticle-Responsys) and include it in your project target.
 
 3. Follow the mParticle iOS SDK [quick-start](https://github.com/mParticle/mparticle-apple-sdk), then rebuild and launch your app, and verify that you see `"Included kits: { Responsys }"` in your Xcode console 
 
 > (This requires your mParticle log level to be at least Debug)
 
-4. Reference mParticle's integration docs below to enable the integration.
+4. Follow step [8.5] in [Step-by-Step guide](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCFA/ios/step-by-step/) to register the app. 
 
-5. To enable additional features of the Responsys SDK like In-App Messaging, Notification Preferences etc., follow the respective guides available [here](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCFB/ios/).
+    **NOTE**:  This step might prompt user for push notification permission if not already prompted. If you want to delay notification permission prompt than register at appropriate place.
+
+5. Reference mParticle's integration docs below to enable the integration.
+
+6. To enable additional features of the Responsys SDK like In-App Messaging, Notification Preferences etc., follow the respective guides available [here](https://docs.oracle.com/cloud/latest/marketingcs_gs/OMCFB/ios/).
 
 
 ### Documentation
